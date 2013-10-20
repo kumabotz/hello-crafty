@@ -51,8 +51,25 @@ Crafty.c('Bush', {
 // player-controlled character
 Crafty.c('PlayerCharacter', {
   init: function() {
-    this.requires('Actor, Fourway, Color')
+    this.requires('Actor, Fourway, Color, Collision')
       .fourway(4)
-      .color('rgb(20, 75, 40)');
+      .color('rgb(20, 75, 40)')
+      .stopOnSolids();
+  },
+
+  // register a stop-movement function to be called when this entity hits an
+  // entity with the "Solid" component
+  stopOnSolids: function() {
+    this.onHit('Solid', this.stopMovement);
+    return this;
+  },
+
+  // stop the movement
+  stopMovement: function() {
+    this._speed = 0;
+    if (this._movement) {
+      this.x -= this._movement.x;
+      this.y -= this._movement.y;
+    }
   }
 });
