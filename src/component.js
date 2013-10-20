@@ -32,6 +32,18 @@ Crafty.c('Actor', {
   }
 });
 
+// a Float is an just an Actor with a certain color that will disappear when
+// on hit
+Crafty.c('Float', {
+  init: function() {
+    this.requires('Actor');
+  },
+
+  collect: function() {
+    this.destroy();
+  }
+});
+
 // a Tree is just an Actor with a certain color
 Crafty.c('Tree', {
   init: function() {
@@ -55,8 +67,10 @@ Crafty.c('PlayerCharacter', {
       .fourway(4)
       .color('rgb(20, 75, 40)')
       .stopOnSolids()
+      // whenever the PC touches a cloud, respond to the event
+      .onHit('Cloud', this.visitCloud)
       // whenever the PC touches a village, respond to the event
-      .onHit('Village', this.visitVillage);
+      .onHit('Village', this.visitVillage)
   },
 
   // register a stop-movement function to be called when this entity hits an
@@ -75,22 +89,36 @@ Crafty.c('PlayerCharacter', {
     }
   },
 
-  // respond to this player visiting a village
+  // respond to player visiting a village
   visitVillage: function(data) {
     village = data[0].obj;
     village.collect();
+  },
+
+  // respond to player visiting a cloud
+  visitCloud: function(data) {
+    cloud = data[0].obj;
+    cloud.collect();
   }
 });
 
-// a village is a tile on the grid that the PC must visit in order to win the
+// village is a tile on the grid that the PC must visit in order to win the
 // game
 Crafty.c('Village', {
   init: function() {
-    this.requires('Actor, Color')
+    this.requires('Float, Color')
       .color('rgb(170, 125, 40)');
-  },
+  }
+});
 
-  collect: function() {
-    this.destroy();
+// cloud is a tile that hide the player view
+Crafty.c('Cloud', {
+  init: function() {
+    this.requires('Float, Color')
+      .attr({
+        w: Game.map_grid.tile.width * 3,
+        h: Game.map_grid.tile.height * 2
+      })
+      .color('rgb(44, 44, 44)');
   }
 });
