@@ -24,7 +24,7 @@ Crafty.c('Grid', {
   }
 });
 
-// an `Actor` is an entity that is drawn in 2D on canvas via our logical
+// an Actor is an entity that is drawn in 2D on canvas via our logical
 // coordinate grid
 Crafty.c('Actor', {
   init: function() {
@@ -32,7 +32,7 @@ Crafty.c('Actor', {
   }
 });
 
-// a `Tree` is just an `Actor` with a certain color
+// a Tree is just an Actor with a certain color
 Crafty.c('Tree', {
   init: function() {
     this.requires('Actor, Color')
@@ -40,7 +40,7 @@ Crafty.c('Tree', {
   }
 });
 
-// a `Bush` is just an `Actor` with a certain color
+// a Bush is just an Actor with a certain color
 Crafty.c('Bush', {
   init: function() {
     this.requires('Actor, Color')
