@@ -47,7 +47,8 @@ Game = {
           // place a tree entity at the current tile
           Crafty.e('Tree').at(x, y);
         } else {
-          var random = Math.random(), place_bush = random < 0.3,
+          var random = Math.random(),
+              place_bush = random < 0.12,
               place_village = random < 0.02;
           if (place_village && Crafty('Village').length < max_villages) {
             Crafty.e('Village').at(x, y);
@@ -55,6 +56,8 @@ Game = {
             // place a bush entity at the current tile
             Crafty.e('Bush').at(x, y);
           }
+          // place the cloud
+          Crafty.e('Cloud').at(x, y);
         }
       }
     }
