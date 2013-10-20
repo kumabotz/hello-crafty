@@ -35,7 +35,7 @@ Crafty.c('Actor', {
 // a Tree is just an Actor with a certain color
 Crafty.c('Tree', {
   init: function() {
-    this.requires('Actor, Color')
+    this.requires('Actor, Color, Solid')
       .color('rgb(20, 125, 40)');
   }
 });
@@ -43,7 +43,7 @@ Crafty.c('Tree', {
 // a Bush is just an Actor with a certain color
 Crafty.c('Bush', {
   init: function() {
-    this.requires('Actor, Color')
+    this.requires('Actor, Color, Solid')
       .color('rgb(20, 185, 40)');
   }
 });
