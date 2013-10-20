@@ -27,6 +27,9 @@ Game = {
     Crafty.init(Game.width(), Game.height());
     Crafty.background('rgb(249, 223, 125)');
 
+    // player character, placed at 5, 5 on our grid
+    Crafty.e('PlayerCharacter').at(5, 5);
+
     // place a tree at every edge square on our grid of 16 x 16 tiles
     for (var x = 0; x < Game.map_grid.width; x++) {
       for (var y = 0; y < Game.map_grid.height; y++) {
