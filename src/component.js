@@ -70,7 +70,7 @@ Crafty.c('PlayerCharacter', {
       // whenever the PC touches a cloud, respond to the event
       .onHit('Cloud', this.visitCloud)
       // whenever the PC touches a village, respond to the event
-      .onHit('Village', this.visitVillage)
+      .onHit('Village', this.visitVillage);
   },
 
   // register a stop-movement function to be called when this entity hits an
