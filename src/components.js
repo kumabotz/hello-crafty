@@ -32,28 +32,25 @@ Crafty.c('Actor', {
   }
 });
 
-// a Tree is just an Actor with a certain color
+// a Tree is just an Actor with a certain sprite
 Crafty.c('Tree', {
   init: function() {
-    this.requires('Actor, Color, Solid')
-      .color('rgb(20, 125, 40)');
+    this.requires('Actor, Solid, spr_tree');
   }
 });
 
-// a Bush is just an Actor with a certain color
+// a Bush is just an Actor with a certain sprite
 Crafty.c('Bush', {
   init: function() {
-    this.requires('Actor, Color, Solid')
-      .color('rgb(20, 185, 40)');
+    this.requires('Actor, Color, spr_bush');
   }
 });
 
-// player-controlled character
+// this is the player-controlled character
 Crafty.c('PlayerCharacter', {
   init: function() {
-    this.requires('Actor, Fourway, Color, Collision')
+    this.requires('Actor, Fourway, Collision, spr_player')
       .fourway(4)
-      .color('rgb(20, 75, 40)')
       .stopOnSolids()
       // whenever the PC touches a cloud, respond to the event
       .onHit('Cloud', this.visitCloud)
@@ -77,10 +74,10 @@ Crafty.c('PlayerCharacter', {
     }
   },
 
-  // respond to player visiting a village
+  // respond to this player visiting a village
   visitVillage: function(data) {
     village = data[0].obj;
-    village.collect();
+    village.visit();
   },
 
   // respond to player visiting a cloud
@@ -90,15 +87,15 @@ Crafty.c('PlayerCharacter', {
   }
 });
 
-// village is a tile on the grid that the PC must visit in order to win the
+// a village is a tile on the grid that the PC must visit in order to win the
 // game
 Crafty.c('Village', {
   init: function() {
-    this.requires('Actor, Color')
-      .color('rgb(170, 125, 40)');
+    this.requires('Actor, spr_village');
   },
 
-  collect: function() {
+  // process a visitation with this village
+  visit: function() {
     this.destroy();
     Crafty.trigger('VillageVisited', this);
   }
