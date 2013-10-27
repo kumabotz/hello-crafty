@@ -42,7 +42,7 @@ Crafty.c('Tree', {
 // a Bush is just an Actor with a certain sprite
 Crafty.c('Bush', {
   init: function() {
-    this.requires('Actor, Color, spr_bush');
+    this.requires('Actor, Solid, spr_bush');
   }
 });
 
@@ -106,7 +106,7 @@ Crafty.c('Cloud', {
   init: function() {
     this.requires('Actor, Color')
       .attr({
-        w: Game.map_grid.tile.width * 3,
+        w: Game.map_grid.tile.width * 2,
         h: Game.map_grid.tile.height * 2
       })
       .color('rgb(44, 44, 44)');
