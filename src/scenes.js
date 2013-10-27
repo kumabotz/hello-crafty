@@ -80,7 +80,7 @@ Crafty.scene('Victory', function() {
 }, function() {
   // remove our event binding from above so that we don't end up having
   // multiple redundant event watchers after multiple restarts of the game
-  this.unbind('KeyDown');
+  this.unbind('KeyDown', this.restart_game);
 });
 
 // loading scene
@@ -95,7 +95,7 @@ Crafty.scene('Loading', function() {
     .css($text_css);
 
   // load our sprite map image
-  Crafty.load(['assets/16x16_forest_1.gif'], function() {
+  Crafty.load(['assets/16x16_forest_1.gif', 'assets/hunter.png'], function() {
     // once the image is loaded...
 
     // define the individual sprites in the image
@@ -105,9 +105,14 @@ Crafty.scene('Loading', function() {
     Crafty.sprite(16, 'assets/16x16_forest_1.gif', {
       spr_tree:    [0, 0],
       spr_bush:    [1, 0],
-      spr_village: [0, 1],
-      spr_player:  [1, 1]
+      spr_village: [0, 1]
     });
+
+    // define the PC sprite to be the first sprite in the third row of the
+    // animation sprite map
+    Crafty.sprite(16, 'assets/hunter.png', {
+      spr_player: [0, 2]
+    }, 0, 2);
 
     // now that our sprites are ready to draw, start the game
     Crafty.scene('Game');
