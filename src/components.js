@@ -46,11 +46,18 @@ Crafty.c('Bush', {
   }
 });
 
+// a Rock is just an Actor with a certain sprite
+Crafty.c('Rock', {
+  init: function() {
+    this.requires('Actor, Solid, spr_rock');
+  }
+});
+
 // this is the player-controlled character
 Crafty.c('PlayerCharacter', {
   init: function() {
     this.requires('Actor, Fourway, Collision, spr_player, SpriteAnimation')
-      .fourway(4)
+      .fourway(2)
       .stopOnSolids()
       // whenever the PC touches a cloud, respond to the event
       .onHit('Cloud', this.visitCloud)
@@ -68,7 +75,7 @@ Crafty.c('PlayerCharacter', {
       .animate('PlayerMovingLeft',  0, 3, 2);
 
     // watch for a change of direction and switch animations accordingly
-    var animation_speed = 8;
+    var animation_speed = 4;
     this.bind('NewDirection', function(data) {
       if (data.x > 0) {
         this.animate('PlayerMovingRight', animation_speed, -1);
