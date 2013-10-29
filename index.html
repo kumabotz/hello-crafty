@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Crafty's Adventure</title>
+</head>
+<body>
+  <h2>Crafty's Adventure</h2>
+  <p>Help Crafty visit her friends in each village.</p>
+  <p class="controls">Controls: Use W, A, S and D or arrow keys to move around.</p>
+  <div id="cr-stage"></div>
+  <p class="bottom">Create for the "Introduction to Crafty Game Engine" tutorial
+      on <a href="http://buildnewgames.com" target="_blank">Build New Games</a>.
+  </p>
+
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/crafty/0.5.3/crafty-min.js"></script>
   <script type="text/javascript" src="src/game.js"></script>
   <script type="text/javascript" src="src/components.js"></script>
@@ -8,11 +19,6 @@
   <script type="text/javascript">
     window.addEventListener('load', Game.start);
   </script>
-  <style type="text/css" media="screen">
-    body {
-      background: black;
-    }
-  </style>
-</head>
-<body></body>
+  <link rel="stylesheet" type="text/css" href="src/css/main.css">
+</body>
 </html>
