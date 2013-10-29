@@ -95,7 +95,11 @@ Crafty.scene('Loading', function() {
     .css($text_css);
 
   // load our sprite map image
-  Crafty.load(['assets/16x16_forest_1.gif', 'assets/hunter.png'], function() {
+  Crafty.load(['assets/16x16_forest_1.gif',
+               'assets/hunter.png',
+               'assets/door_knock_3x.mp3',
+               'assets/door_knock_3x.ogg',
+               'assets/door_knock_3x.aac'], function() {
     // once the image is loaded...
 
     // define the individual sprites in the image
@@ -113,6 +117,13 @@ Crafty.scene('Loading', function() {
     Crafty.sprite(16, 'assets/hunter.png', {
       spr_player: [0, 2]
     }, 0, 2);
+
+    // define our sounds for later use
+    Crafty.audio.add({
+      knock: ['assets/door_knock_3x.mp3',
+              'assets/door_knock_3x.ogg',
+              'assets/door_knock_3x.aac']
+    });
 
     // now that our sprites are ready to draw, start the game
     Crafty.scene('Game');
